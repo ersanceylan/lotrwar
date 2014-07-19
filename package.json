@@ -1,9 +1,25 @@
 {
-     "name": "game_card",
-     "description": "example board game with socket.io",
-     "version": "0.0.1",
-     "dependencies": {
-        "express": "2.4.6",
-        "socket.io": "0.8.4"
-     }
+  "name": "game_card",
+  "description": "example board game with socket.io",
+  "version": "0.0.1",
+  "dependencies": {
+    "express": "2.4.6",
+    "socket.io": "0.8.4"
+  },
+  "gitHead": "77158ed5566246850a04c002970e7aa5a312b4e3",
+  "main": "app.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@heroku.com:lotrwar.git"
+  },
+  "keywords": [
+    "game",
+    "node"
+  ],
+  "author": "",
+  "license": "MIT"
 }
