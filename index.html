@@ -1,0 +1,130 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<link href="style.css" rel="stylesheet" type="text/css" />
+<!-- <link href="jquery-ui-1.9.2.custom.min.css" rel="stylesheet"> -->
+
+<script type="text/javascript" src="jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="jquery-ui-1.9.2.custom.min.js"></script>
+
+<script type="text/javascript" src="start.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/game.js"></script>
+<script>
+
+function showMessage(msg, cl) {
+  if (!cl) cl = "";
+  var li = "<li style='display:none' class='" + cl + "'>" + msg + "</li>";
+  $(li).prependTo($('#message ul')).slideDown();
+}
+
+var socket, myself, opponent;
+var Player = this.Game.Player;
+var GameRules = this.Game.Rules;
+$(document).ready(function() {
+  $('#connect').click(function() {
+		// call the server-side function 'adduser' and send one parameter (value of prompt)
+        socket = io.connect('http://localhost:8080');
+        var username = $('#name').val();
+        console.log("Trying to connect as " + $('#name').val());
+        $('#intro').text("Trying to connect");
+        socket.on('connect', function(){
+            console.log("SUCCESS for : " + username);
+            $('#intro').text("Waiting for opponent");
+		    socket.emit('adduser', username);
+        });
+        socket.on('startGame', function(myData, oppData){
+            $('#gameArea').show();
+            showMessage("Game started. First a setup tour.");
+            $('#intro').hide();
+            $('#gameArea').show();
+            console.log(myData);
+            console.log(oppData);
+            myself = new Player(myData, socket);
+            myself.opponent = opponent = new Player(oppData, null);
+            opponent.opponent = myself;
+            console.log(myself);
+            initialize(myself);
+        });
+        socket.on('opponentAction', function(response) {
+          console.log("Opponent: ");
+          console.log(response);
+          showMessage(response.message);
+          opponent.performAction(response.action, response.result)
+          applyOppAction(response.action, response.result)
+        })
+        socket.on('actionResult', function(response) {
+          console.log("Action response: ");
+          console.log(response);
+          if (response.valid) {
+            myself.performAction(response.action, response.result);
+            applyMyAction(response.action, response.result);
+            if (response.message) {
+              showMessage(response.message);
+            }
+          }
+          else {
+            // TODO : undo action?
+            showMessage(response.message, "error");
+          }
+        })
+         socket.on('serverMessage', function(data) {
+           console.log(data);
+           showMessage(data.msg, "server");
+           if (data.turn) {
+             myself.turn = data.turn == myself.name;
+             myself.opponent.turn = !myself.turn;
+             var handCards = $('#myHand .card');
+             if (myself.turn) {
+               $("#myField .cardHolder").droppable( "enable");
+               // handCards.draggable("option", "revert", "invalid" );
+               handCards.off( "dragstart.turn"); // unbind showMessage event
+
+             }
+             else {
+               $("#myField .cardHolder").droppable( "disable");
+               // handCards.draggable("option", "revert", true ); // always revert
+               handCards.on( "dragstart.turn", function() {showMessage("Not your turn.", "error")} );
+             }
+           }
+         })
+
+	});
+})
+</script>
+<title>Card Game</title>
+<style>
+  #gameArea {
+    display: none;
+  }
+</style>
+</head>
+<body>
+<div id='intro'>
+Enter your name : <input type='text' size=40 id='name'> <button id='connect'>CONNECT</button>
+</div>
+<div id='gameArea'>
+  <div id='oppDeck' class='deck closed'></div>
+  <div id='oppHand' class='hand'></div>
+  <div id='oppField' class='field'></div>
+  <div id='message'><ul></ul></div>
+  <div id='hits'></div>
+  <div id='myField'  class='field'></div>
+  <div id='myHand' class='hand'></div>
+  <div id='myDeck' class='deck closed'></div>
+  <button id='drawButton'>DRAW</button>
+</div>
+<!--
+<pre>
+Your Hand:
+<ul id='hand'></ul>
+<button id='drawBut'>Draw Card</button>
+</pre>
+-->
+</body>
+</html>
+
+
+
+
+

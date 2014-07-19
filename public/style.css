@@ -1,0 +1,181 @@
+
+div {
+  bborder: 1px solid red;
+  margin: 0px;
+  padding:0px;
+}
+
+#gameArea {
+  width: 1000px;
+  margin: 0px auto;
+  /* position: relative; */
+  bbborder: 1px solid blue;
+}
+
+.hand {
+  /* width: 80%; 
+  width: 720px; */
+  margin: 10px auto;
+  bbborder: 1px solid red;
+  position: relative;
+  /* overflow: auto; */
+}
+
+.field {
+  margin: 0px auto;
+  /* overflow: auto; */
+  position: relative;
+}
+
+.card  {
+  background-color: #ddd;
+  position: absolute;
+  font-size: 12px;
+  padding: 0px;
+  margin: 0px;
+  z-index: 3;
+  bbborder: 1px solid red;
+}
+
+.cardHolder {
+  bborder: 1px solid #555;
+  background: url(iconset/bg-images/cardHolderr.png) center center;
+  position: absolute;
+}
+
+#drawButton {
+  position: absolute;
+}
+
+.deck {
+  position: absolute;
+  bbborder: 1px solid red;
+}
+
+.field .empty {
+  bborder: 5px double #bbb;
+  box-shadow: 0px 0px 10px 2px #888888;
+  oopacity: 0.8;
+}
+
+.field .full {
+  bborder: 5px double #333; 
+  box-shadow: 0px 0px 10px 3px #666;
+  oopacity: 0.8;
+}
+
+.closed {
+  background-image: url('pattern1.png');
+}
+
+.open {
+  background-image: url('pattern2.png');
+}
+
+.card h3 {
+  border-bottom: 2px solid #666;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 120%;
+  width: 80%;
+  margin: 5px auto;
+}
+
+.card .energy {
+  text-align: center;
+  font-size: 200%;
+  width: 25%;
+  margin: 10px auto;
+}
+
+.card .attack, .card .defense {
+  position: absolute;
+  bottom: 0px;
+  border: 1px solid gray;
+  width: 25px;
+  height: 25px;
+  padding-top: 5px;
+  text-align: center;
+  font-size: 125%;
+}
+
+.card .attack {
+  left: 0px;
+}
+.card .defense {
+  right: 0px;
+}
+
+.card * {
+  background-color: #ccc;
+  opacity: 0.75;
+  border: 1px solid gray;
+}
+
+.actionBox {
+  position: absolute;
+  width: 19px;
+  height: 19px;
+  background-color: yellow;
+  text-align: center;
+  font-size: 150%;
+  display:none;
+  cursor: hand;
+}
+
+#hits {
+   margin: 0px auto;
+   bbbborder: 1px solid red;
+   height: 30px;
+   padding: 3px 3px;
+   text-align: center;
+}
+
+#hits span {
+  color: blue;
+  padding: 0px 3px;
+  font-weight: bold;
+}
+
+#hits span.success {
+  color: green;
+}
+
+#hits span.fail {
+  color: red;
+}
+
+#message {
+  position: absolute;
+  height: 150px;
+  width: 250px;
+  border: 1px solid gray;
+  padding: 3px;
+  overflow: scroll;
+}
+
+#message ul{
+ margin: 0px;
+ padding-left: 3px;
+}
+
+#message ul li{
+ margin: 2px;
+ padding: 0px;
+}
+
+#message ul li {
+  list-style-type: none;
+}
+
+#message ul li:first-child {
+  background-color: #ACF9E1;
+}
+
+#message ul li.error:first-child {
+  background-color: pink;
+}
+
+#message ul li:before {
+  content: "\21E8"; 
+}
