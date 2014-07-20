@@ -3,7 +3,7 @@ var app = express()
   , http = require('http')
   , server = http.createServer(app)
   , io = require('socket.io').listen(server);
-server.listen(8080);
+server.listen(process.env.PORT);
 
 
 var game = require('./lib/gameManager.js');
