@@ -10,7 +10,7 @@ var game = require('./lib/gameManager.js');
 
 var GameManager = game.Manager;
 
-io.set('log level', 1);
+// io.set('log level', 1);
 
 
 // routing
