@@ -4,7 +4,7 @@ var app = express()
   , server = http.createServer(app)
   , io = require('socket.io').listen(server);
 server.listen(8080);
-  
+
 
 var game = require('./lib/gameManager.js');
 
@@ -36,9 +36,9 @@ io.sockets.on('connection', function (socket) {
 		// we store the username in the socket session for this client
         console.log("NEW USER : " + username);
 				socket.username = username;
-        socket.join(room);        
+        socket.join(room);
         socket.room = room;
-        gm.connect(socket, username);           
+        gm.connect(socket, username);
 	});
 
 	// when the user disconnects.. perform this
@@ -52,7 +52,7 @@ io.sockets.on('connection', function (socket) {
         // gm.player2 = null;
         gm = new GameManager(io);
 	});
-    
+
     socket.on('action', function(action) {
       console.log("Action : ");
       console.log(action);
