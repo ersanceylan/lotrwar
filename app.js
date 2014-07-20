@@ -22,7 +22,7 @@ app.get('/', function (req, res) {
 app.get('/game.js', function (req, res) {
   res.sendfile(__dirname + '/lib/game.js');
 });
-app.use('/socket.io', express.static(__dirname + '/node_modules/socket.io'));
+app.use(express.static(__dirname + '/node_modules/socket.io'));
 app.use('/game.js', express.static(__dirname + '/lib/game.js'));
 app.use(express.static(__dirname + '/public'));
 
