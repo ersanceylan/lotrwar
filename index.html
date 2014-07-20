@@ -24,7 +24,8 @@ var GameRules = this.Game.Rules;
 $(document).ready(function() {
   $('#connect').click(function() {
 		// call the server-side function 'adduser' and send one parameter (value of prompt)
-        socket = io.connect('http://localhost:8080');
+        socket = io.connect();
+        //console.log(process.env)
         var username = $('#name').val();
         console.log("Trying to connect as " + $('#name').val());
         $('#intro').text("Trying to connect");
