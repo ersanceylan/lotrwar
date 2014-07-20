@@ -103,6 +103,11 @@ $(document).ready(function() {
 <div id='intro'>
 Enter your name : <input type='text' size=40 id='name'> <button id='connect'>CONNECT</button>
 </div>
+<script>
+  $(document).on("ready",function(){
+    alert($("connect").text())
+  })
+</script>
 <div id='gameArea'>
   <div id='oppDeck' class='deck closed'></div>
   <div id='oppHand' class='hand'></div>
