@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "dependencies": {
     "express": "~4.6.1",
-    "socket.io": "0.8.4",
+    "socket.io": "~1.0.6",
     "logfmt": "~1.1.2"
   },
   "gitHead": "77158ed5566246850a04c002970e7aa5a312b4e3",
