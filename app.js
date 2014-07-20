@@ -1,4 +1,5 @@
 var express = require('express');
+var logfmt = require("logfmt");
 var app = express()
   , http = require('http')
   , server = http.createServer(app)
@@ -10,7 +11,7 @@ var game = require('./lib/gameManager.js');
 
 var GameManager = game.Manager;
 
-// io.set('log level', 1);
+//io.set('log level', 1);
 
 
 // routing
