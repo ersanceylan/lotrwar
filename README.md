@@ -1,1 +1,1 @@
-example card game with lord of the rings heroes!!!!
+real time card game using with node.js
